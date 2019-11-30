@@ -57,12 +57,11 @@ awssh "AAA"
 ```bash
 awssh "AAA" "centos"
 ```
-3. if your pem cannot use the default pem
-	a. you need to create another .pem file and run 
+3. if your pem cannot use the default pem, you need to create another .pem file and run 
 ```bash
 ./install_awssh.sh
 ```
-	b. once the .pem already install,you can run as
+once the .pem already install,you can run as
 ```bash
 #must input username as well
 awssh "AAA" "centos" "mycentos.pem"
