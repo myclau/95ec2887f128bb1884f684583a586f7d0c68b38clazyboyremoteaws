@@ -1,0 +1,3 @@
+[default]
+region=<input region>
+output=json
