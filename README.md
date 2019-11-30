@@ -40,7 +40,7 @@ aws-default.pem
 ```
 4. Update the default config for awscli by running
 ```bash
-.\update_awscli_config.sh
+./update_awscli_config.sh
 ```
 5. Once all ready you can run 
 ```bash
@@ -96,8 +96,11 @@ ssh -i "~/awssh/my-server-00.pem" ec2-user@3.0.119.18
 1.  Assume the Tag "Name" is unique this also the limitation on my current work
 2. if you have many machine in many account and different region the tool is not work
 3. it only work for the same account, same region
-4. to work for this you will need to add each region for each account to the `~/.aws/credentials` `~/.aws/config`
-5. and add param to allow input profile name.
+4. to work for this you will need to add each region for each account to the `~/.aws/credentials` `~/.aws/config` and run
+```bash
+./update_awscli_config.sh
+```
+5. and add param to allow input profile name. (Can be improve later)
 
 
 
