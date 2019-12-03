@@ -130,6 +130,7 @@ ssh -i "~/awssh/my-server-00.pem" ec2-user@3.0.119.18
 ./update_awscli_config.sh
 ```
 5. [completed] and add param to allow input profile name. (Can be improve later)
+6. Can do the arg parser instead ref: `https://stackoverflow.com/questions/192249/how-do-i-parse-command-line-arguments-in-bash`
 
 
 
