@@ -16,7 +16,7 @@ function awssh(){
                echo "Host not found / No Public Address"
                return 1
         fi
-	echo "ssh -i \"~/awssh/$pemname\" ec2-user@$ipaddress" 
+	echo "ssh -i \"~/awssh/$pemname\" $username@$ipaddress"
 
-	ssh -i "~/awssh/$pemname" ec2-user@$ipaddress
+        ssh -i "~/awssh/$pemname" $username@$ipaddress
 }
