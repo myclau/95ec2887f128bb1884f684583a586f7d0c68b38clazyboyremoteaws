@@ -20,10 +20,32 @@ awscli-conf/credentials
 [default]
 aws_access_key_id=<fill in aws access key>
 aws_secret_access_key=<fill in aws secret>
+[accountname1_region1]
+aws_access_key_id=<fill in aws access key>
+aws_secret_access_key=<fill in aws secret>
+[accountname1_region2]
+aws_access_key_id=<fill in aws access key>
+aws_secret_access_key=<fill in aws secret>
+[accountname2_region1]
+aws_access_key_id=<fill in aws access key>
+aws_secret_access_key=<fill in aws secret>
+
 ```
+For the non-default profile name I suggest account name then region name
+
+
 awscli-conf/config
 ```bash
 [default]
+region=<input region>
+output=json
+[accountname1_region1]
+region=<input region>
+output=json
+[accountname1_region2]
+region=<input region>
+output=json
+[accountname2_region1]
 region=<input region>
 output=json
 
@@ -53,9 +75,13 @@ aws-default.pem
 ```bash
 awssh "AAA"
 ```
-2. if your usename to login the ec2 not ec2-user, please run as
+2. [new feature] if your profile is not default, please run as
 ```bash
-awssh "AAA" "centos"
+awssh "AAA" "profile_name"
+```
+3. if your usename to login the ec2 not ec2-user, please run as
+```bash
+awssh "AAA" "profile_name" "centos"
 ```
 3. if your pem cannot use the default pem, you need to create another .pem file and run 
 ```bash
@@ -63,8 +89,7 @@ awssh "AAA" "centos"
 ```
 once the .pem already install,you can run as
 ```bash
-#must input username as well
-awssh "AAA" "centos" "mycentos.pem"
+awssh "AAA" "profile_name" "centos" "mycentos.pem"
 ```
 
 # Expected result
@@ -76,11 +101,15 @@ ssh -i "~/awssh/aws-default.pem" ec2-user@3.0.119.18
 $ awssh not-existing-host
 Host not found / NO Public Address
 
-$ awssh my-server-001 cloudadm
+$ awssh my-server-001 mgmt_ap-southeast-1
+ssh -i "~/awssh/aws-default.pem" ec2-user@3.0.119.18
+[cloudadm@ip-3-0-119-18 ~]$
+
+$ awssh my-server-001 mgmt_ap-southeast-1 cloudadm
 ssh -i "~/awssh/aws-default.pem" cloudadm@3.0.119.18
 [cloudadm@ip-3-0-119-18 ~]$
 
-$ awssh my-server-001 ec2-user my-server-00.pem
+$ awssh my-server-001 mgmt_ap-southeast-1 ec2-user my-server-00.pem
 ssh -i "~/awssh/my-server-00.pem" ec2-user@3.0.119.18
 [ec2-user@ip-3-0-119-18 ~]$
 
@@ -96,11 +125,11 @@ ssh -i "~/awssh/my-server-00.pem" ec2-user@3.0.119.18
 1.  Assume the Tag "Name" is unique this also the limitation on my current work
 2. if you have many machine in many account and different region the tool is not work
 3. it only work for the same account, same region
-4. to work for this you will need to add each region for each account to the `~/.aws/credentials` `~/.aws/config` and run
+4. [completed] to work for this you will need to add each region for each account to the `~/.aws/credentials` `~/.aws/config` and run
 ```bash
 ./update_awscli_config.sh
 ```
-5. and add param to allow input profile name. (Can be improve later)
+5. [completed] and add param to allow input profile name. (Can be improve later)
 
 
 
