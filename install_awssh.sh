@@ -1,7 +1,7 @@
 rm -rf ~/awssh
 mkdir -p ~/awssh
 cp awssh.sh ~/awssh/awssh.sh
-cp aws-default.pem ~/awssh/aws-default.pem
+cp *.pem ~/awssh
 
 if ! grep -Fxq "source ~/awssh/awssh.sh" ~/.bashrc
 then
